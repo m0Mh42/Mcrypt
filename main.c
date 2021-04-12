@@ -11,7 +11,7 @@ int file_length(FILE *file){
 
 int main(int argc, char *argv[]){
     if (argc < 4){
-        printf("Usage: ecode [to encode file] [encoded file] [password]");
+        printf("Usage: %s [file1] [file2] [password]", argv[0]);
         return -1;
     }
     FILE *fp;
