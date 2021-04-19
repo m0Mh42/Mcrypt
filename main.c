@@ -30,5 +30,6 @@ int main(int argc, char *argv[]){
         fputc((data[j] ^ pass), fp);
     }
     fclose(fp);
+    free(data);
     return 0;
 }
