@@ -67,11 +67,15 @@ int main(int argc, char *argv[]){
     uint8_t headerstr[4];
     
     // Uncompleted second headering
-    header.year = 0;
-    header.month = 0;
-    header.day = 0;
-    header.hour = 0;
-    header.min = 0;
+    time_t rawtime;
+    struct tm* timeinfo;
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+    header.year = (uint8_t) timeinfo->tm_year;
+    header.month = (uint8_t) timeinfo->tm_mon;
+    header.day = (uint8_t) timeinfo->tm_mday;
+    header.hour = (uint8_t) timeinfo->tm_hour;
+    header.min = (uint8_t) timeinfo->tm_min;
     header.count = (inputsecondheader[3] & 0x0F) + 1;
     create_secondheader(header, headerstr);
 
