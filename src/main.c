@@ -65,8 +65,8 @@ int main(int argc, char *argv[]){
     // Header set
     struct SecondHeaderType header;
     uint8_t headerstr[4];
-    
-    // Uncompleted second headering
+
+    // Completed second headering    
     time_t rawtime;
     struct tm* timeinfo;
     time (&rawtime);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]){
     calc_sha_256(hash, argv[2], strlen(argv[2]));
 
     // Opening output file
-    outputfile = fopen(outputfilename, "wb");
+    outputfile = fopen(outputfilename, "xb");
     if (!outputfile){
         clsetred();
         perror("Output File Error");
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]){
         c = fgetc(inputfile);
         
         // We don't have 0xff in ascii table.
-        if (c == 0xFF) break; 
+        if (c == 0xFF) break; // EOF
 
         c ^= randbytes[0];
 
